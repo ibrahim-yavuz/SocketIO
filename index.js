@@ -7,6 +7,12 @@ const io = new Server(3000, '207.154.197.220', {
 var players = []
 var playerCounter = 0
 
+
+var array = [1,2,3,4,5,6,7,8]
+
+array = removeItemFromArray(array, 2)
+console.log(array)
+
 io.on("connection", (socket) => {
   console.log("Connection created!")
 
@@ -22,15 +28,20 @@ io.on("connection", (socket) => {
   })
 
   socket.on('disconnected', (data) => {
-    const index = players.indexOf(socket.id);
-
-    if (index > -1) {
-      players.splice(index, 1);
-    }
-    
+    players = removeItemFromArray(players, socket.id)    
   })
 });
 
 io.on("disconnect", (socket) => {
   console.log("disconnected")
 })
+
+function removeItemFromArray(arr, value){
+  var indexOfItem = arr.indexOf(value)
+
+  if(indexOfItem > -1){
+    arr.splice(indexOfItem, 1)
+  }
+
+  return arr
+}
