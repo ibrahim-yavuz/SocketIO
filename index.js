@@ -18,7 +18,7 @@ io.on("connection", (socket) => {
 
   players[playerCounter++] = socket.id
   
-  io.emit("playerConnected", players)
+  io.emit("playerConnected", players.filter(String))
 
   console.log(players)
 
