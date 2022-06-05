@@ -14,6 +14,10 @@ io.on("connection", (socket) => {
   
   io.emit("playerConnected", players)
 
+  socket.on("message", (data) => {
+    io.emit("message", socket.id + ": " + data)
+  })
+
   console.log(players)
 
   socket.on('tankPosition', (data) => {
