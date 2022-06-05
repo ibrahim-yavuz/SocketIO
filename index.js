@@ -22,10 +22,10 @@ io.on("connection", (socket) => {
   })
 
   socket.on('disconnected', (data) => {
-    const index = array.indexOf(socket.id);
+    const index = players.indexOf(socket.id);
 
     if (index > -1) {
-      array.splice(index, 1);
+      players.splice(index, 1);
     }
     
   })
